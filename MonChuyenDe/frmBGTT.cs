@@ -20,7 +20,8 @@ namespace MonChuyenDe
         private SqlCommand _command = null;
     
         private int _vitriRow;
-     
+        private int _vitriColumn;
+
         public frmBGTT()
         {
             InitializeComponent();
@@ -92,11 +93,11 @@ namespace MonChuyenDe
             dt.Load(_command.ExecuteReader());    // vì chỉ đọc thôi nên dùng data Reader. ko cần phải dùng dataset
             this.dataGridView1.DataSource = dt;
 
-
+            // giữ vị trí cursor
             try
             {
-                this.dataGridView1.ClearSelection();
-                this.dataGridView1.Rows[_vitriRow].Selected = true;
+                dataGridView1.ClearSelection();
+                dataGridView1.Rows[_vitriRow].Cells[_vitriColumn].Selected = true;
 
             }
             catch (Exception ex)
@@ -111,7 +112,7 @@ namespace MonChuyenDe
         private string GetSQL()
         {
             return " SELECT MACP AS[    - - - - - - -], DM_GIA2 AS[Giá Mua 2], DM_KL2 AS[KLM 2], DM_GIA1 AS[Giá Mua 1], DM_KL1 AS[KLM 1], KL_GIA AS[Giá Khớp], "
-                    + " KL_KL AS[KL khớp], KL_KL AS[Giá Bán 1], DB_KL1 AS[KLB 1], DB_GIA2 AS[Giá Bán 2], DB_KL2 AS[KLB 2] " +
+                    + " KL_KL AS[KL khớp], DB_GIA1 AS[Giá Bán 1], DB_KL1 AS[KLB 1], DB_GIA2 AS[Giá Bán 2], DB_KL2 AS[KLB 2] " +
                     " FROM dbo.BANG_GIA_TRUC_TUYEN ";
         }
 
@@ -238,7 +239,7 @@ namespace MonChuyenDe
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-          
+            _vitriColumn = dataGridView1.CurrentCell.ColumnIndex;
             _vitriRow = dataGridView1.CurrentRow.Index;
         }
 
