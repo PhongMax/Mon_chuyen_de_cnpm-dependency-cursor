@@ -46,18 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CHUNGKHOANDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CHUNGKHOANDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="frmBGTT.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmBGTT.Designer.cs">
       <DependentUpon>frmBGTT.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mon_Chuyen_De\CHUNGKHOANDataSet.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmBGTT.resx">
@@ -72,17 +66,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="CHUNGKHOANDataSet.xsc">
-      <DependentUpon>CHUNGKHOANDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="CHUNGKHOANDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>CHUNGKHOANDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="CHUNGKHOANDataSet.xss">
-      <DependentUpon>CHUNGKHOANDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -95,6 +78,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Mon_Chuyen_De\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

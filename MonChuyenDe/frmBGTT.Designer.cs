@@ -28,17 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBGTT));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.cHUNGKHOANDataSet = new MonChuyenDe.CHUNGKHOANDataSet();
-            this.bANG_GIA_TRUC_TUYENBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bANG_GIA_TRUC_TUYENTableAdapter = new MonChuyenDe.CHUNGKHOANDataSetTableAdapters.BANG_GIA_TRUC_TUYENTableAdapter();
-            this.tableAdapterManager = new MonChuyenDe.CHUNGKHOANDataSetTableAdapters.TableAdapterManager();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cHUNGKHOANDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bANG_GIA_TRUC_TUYENBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -61,28 +54,6 @@
             this.dataGridView1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dataGridView1_Scroll);
             this.dataGridView1.Paint += new System.Windows.Forms.PaintEventHandler(this.dataGridView1_Paint);
             // 
-            // cHUNGKHOANDataSet
-            // 
-            this.cHUNGKHOANDataSet.DataSetName = "CHUNGKHOANDataSet";
-            this.cHUNGKHOANDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // bANG_GIA_TRUC_TUYENBindingSource
-            // 
-            this.bANG_GIA_TRUC_TUYENBindingSource.DataMember = "BANG_GIA_TRUC_TUYEN";
-            this.bANG_GIA_TRUC_TUYENBindingSource.DataSource = this.cHUNGKHOANDataSet;
-            // 
-            // bANG_GIA_TRUC_TUYENTableAdapter
-            // 
-            this.bANG_GIA_TRUC_TUYENTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.BANG_GIA_TRUC_TUYENTableAdapter = this.bANG_GIA_TRUC_TUYENTableAdapter;
-            this.tableAdapterManager.LENHDATTableAdapter = null;
-            this.tableAdapterManager.LENHKHOPTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = MonChuyenDe.CHUNGKHOANDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
             // frmBGTT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -98,8 +69,6 @@
             this.Text = "BẢNG GIÁ TRỰC TUYẾN";
             this.Load += new System.EventHandler(this.frmBGTT_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cHUNGKHOANDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bANG_GIA_TRUC_TUYENBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -107,9 +76,5 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private CHUNGKHOANDataSet cHUNGKHOANDataSet;
-        private System.Windows.Forms.BindingSource bANG_GIA_TRUC_TUYENBindingSource;
-        private CHUNGKHOANDataSetTableAdapters.BANG_GIA_TRUC_TUYENTableAdapter bANG_GIA_TRUC_TUYENTableAdapter;
-        private CHUNGKHOANDataSetTableAdapters.TableAdapterManager tableAdapterManager;
     }
 }
