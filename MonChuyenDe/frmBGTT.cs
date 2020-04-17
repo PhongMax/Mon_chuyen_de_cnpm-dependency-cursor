@@ -111,7 +111,7 @@ namespace MonChuyenDe
         private string GetSQL()
         {
             return " SELECT MACP AS[    - - - - - - -], DM_GIA2 AS[Giá Mua 2], DM_KL2 AS[KLM 2], DM_GIA1 AS[Giá Mua 1], DM_KL1 AS[KLM 1], KL_GIA AS[Giá Khớp], "
-                    + " KL_KL AS[KL khớp], KL_KL AS[Giá Bán 1], DB_KL1 AS[KLB 1], DB_GIA2 AS[Giá Bán 2], DB_KL2 AS[KLB 2] " +
+                    + " KL_KL AS[KL khớp], DB_GIA1 AS[Giá Bán 1], DB_KL1 AS[KLB 1], DB_GIA2 AS[Giá Bán 2], DB_KL2 AS[KLB 2] " +
                     " FROM dbo.BANG_GIA_TRUC_TUYEN ";
         }
 
