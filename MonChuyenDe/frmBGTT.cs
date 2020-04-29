@@ -168,7 +168,7 @@ namespace MonChuyenDe
 
         private string GetConnectionString()
         {
-            return @"Data Source=DESKTOP-CJGOS0L;Initial Catalog=CHUNGKHOAN;User ID=sa;Password=123456";
+            return @"Data Source=MSI;Initial Catalog=CHUNGKHOAN;User ID=sa;Password=123456";
         }
         private void dataGridView1_Paint(object sender, PaintEventArgs e)
         {
@@ -264,6 +264,48 @@ namespace MonChuyenDe
             }
         }
 
+        private int datlenh()
+        {
+            int result = 1; // thoa
+            string lenh = string.Format("EXEC SP_KHOPLENH_LO {0}, {1}, {2},{3}, {4} ", txtMaCP, DateTime.Now, txtLoaiGD,txtSoLuong, txtGiaDat);
+            using (SqlConnection connection = new SqlConnection(Program.connstr))
+            {
+                connection.Open();
+                SqlCommand sqlCommand = new SqlCommand(lenh, connection);
+                sqlCommand.CommandType = CommandType.Text;
+                try
+                {
+                    sqlCommand.ExecuteNonQuery();
+                }
+                catch
+                {
+                    result = 0; // ko thoa
+                }
+            }
+            return result;
+        }
+
+
+        private void btnLenhDat_Click(object sender, EventArgs e)
+        {
+             using (var cmd = new SqlCommand("SP_KHOPLENH_LO", _connection))
+            {
+                //SqlCommand cmd = new SqlCommand("SP_KHOPLENH_LO", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@macp", txtMaCP.Text));
+                cmd.Parameters.Add(new SqlParameter("@Ngay", "2020-04-17 13:33:08.183"));
+                cmd.Parameters.Add(new SqlParameter("@LoaiGD", txtLoaiGD.Text));
+                cmd.Parameters.Add(new SqlParameter("@soluongMB", int.Parse(txtSoLuong.Text)));
+                cmd.Parameters.Add(new SqlParameter("@giadatMB", float.Parse(txtGiaDat.Text)));
+
+                //conn.Open();
+                cmd.ExecuteNonQuery();
+                //conn.Close();
+
+            }
+            MessageBox.Show("thanh cong");
+        }
 
     }
 }
