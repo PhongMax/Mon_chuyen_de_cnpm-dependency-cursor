@@ -54,7 +54,7 @@ namespace MonChuyenDe
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmBGTT());
+            Application.Run(new frmLenhDat());
         }
     }
 }

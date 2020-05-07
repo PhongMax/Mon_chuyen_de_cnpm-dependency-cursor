@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,62 +14,122 @@ namespace MonChuyenDe
 {
     public partial class frmLenhDat : Form
     {
+        private const string tableName = "BANG_GIA_TRUC_TUYEN";
+        private SqlConnection _connection = null;
+
         public frmLenhDat()
         {
             InitializeComponent();
-        }
-
-        private void lENHDATBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.lENHDATBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.cHUNGKHOANDataSet);
 
         }
 
         private void frmLenhDat_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'cHUNGKHOANDataSet.LENHDAT' table. You can move, or remove it, as needed.
-            this.lENHDATTableAdapter.Fill(this.cHUNGKHOANDataSet.LENHDAT);
-
+            FormLoad();
         }
 
-        private int datlenh(string ma, string loaiGD, int sl, float giaDat )
+        private string GetConnectionString()
         {
-            int result = 1; // thoa
-            string lenh = string.Format("EXEC SP_KHOPLENH_LO {0}, {1}, {2}, {3}, {4} ", ma, DateTime.Now, loaiGD, sl, giaDat);
-            using (SqlConnection connection = new SqlConnection(Program.connstr))
+            return @"Data Source=MSI;Initial Catalog=CHUNGKHOAN;User ID=sa;Password=123456";
+        }
+
+        private void FormLoad()
+        {
+            if (_connection == null)
             {
-                connection.Open();
-                SqlCommand sqlCommand = new SqlCommand(lenh, connection);
-                sqlCommand.CommandType = CommandType.Text;
-                try
-                {
-                    sqlCommand.ExecuteNonQuery();
-                }
-                catch
-                {
-                    result = 0; // ko thoa
-                }
+                _connection = new SqlConnection(GetConnectionString());
+                _connection.Open();
             }
-            return result;
         }
 
         private void btnLenhDat_Click(object sender, EventArgs e)
         {
-            //if (Program.KetNoi() == 0) return;
-            //Program.conn.Close();
+                using (var cmd = new SqlCommand("SP_KHOPLENH_LO", _connection))
+                {
+                    //SqlCommand cmd = new SqlCommand("SP_KHOPLENH_LO", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-            //string ma = txtMaCP.Text;
-            //string loaiGD = txtLoaiGD.Text;
-            //int sl = int.Parse( txtSoLuong.Text);
-            //float gia = float.Parse(txtGiaDat.Text);
+                    cmd.Parameters.Add(new SqlParameter("@macp", txtMaCP.Text));
+                    cmd.Parameters.Add(new SqlParameter("@Ngay", "2020-04-17 13:33:08.183"));
+                    cmd.Parameters.Add(new SqlParameter("@LoaiGD", txtLoaiGD.Text));
+                    cmd.Parameters.Add(new SqlParameter("@soluongMB", int.Parse(txtSoLuong.Text)));
+                    cmd.Parameters.Add(new SqlParameter("@giadatMB", float.Parse(txtGiaDat.Text)));
 
-            //datlenh(ma, loaiGD, sl, gia);
-            //this.lENHDATTableAdapter.Fill(this.cHUNGKHOANDataSet.LENHDAT);
+                    //conn.Open();
+                    cmd.ExecuteNonQuery();
+                    //conn.Close();
 
+                }
+                MessageBox.Show("thanh cong");
+           
+                
             
+        }
 
+
+        private void txtMaCP_Validated(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtMaCP.Text))
+            {
+                errorProvider.SetError(txtMaCP, "Vui lòng điền Mã Cổ Phiếu!");
+            }
+            else if (!Regex.IsMatch(txtMaCP.Text, @"[A-Za-z][A-Za-z0-9]{2,7}"))
+            {
+                errorProvider.SetError(txtMaCP, "Mã Cổ Phiếu Không hợp lệ!");
+            }
+            else
+            {
+                errorProvider.SetError(txtMaCP, null);
+            }
+        }
+
+        private void txtSoLuong_Validated(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtSoLuong.Text))
+            {
+                errorProvider.SetError(txtSoLuong, "Vui lòng điền Số Lượng!");
+            }
+            else if (!Regex.IsMatch(txtSoLuong.Text.ToString(), @"[0-9]{2,7}"))
+            {
+                errorProvider.SetError(txtSoLuong, "Số lượng Không hợp lệ!");
+            }
+            else
+            {
+                errorProvider.SetError(txtSoLuong, null);
+            }
+        }
+
+        private void txtGiaDat_Validated(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtGiaDat.Text.ToString()))
+            {
+                errorProvider.SetError(txtGiaDat, "Vui lòng điền Giá đặt!");
+            }
+            else if (!Regex.IsMatch(txtGiaDat.Text.ToString(), @"[0-9]{2,7}"))
+            {
+                errorProvider.SetError(txtGiaDat, "Giá đặt Không hợp lệ!");
+            }
+            else
+            { 
+                errorProvider.SetError(txtGiaDat, null);
+            }
+        }
+
+        private void txtLoaiGD_Validated(object sender, EventArgs e)
+        {
+
+            if (string.IsNullOrEmpty(txtLoaiGD.Text))
+            {
+                errorProvider.SetError(txtGiaDat, "Vui lòng điền Giá đặt!");
+            }
+            else if (!txtLoaiGD.Text.Equals("B") || !txtLoaiGD.Text.Equals("M"))
+            {
+                errorProvider.SetError(txtLoaiGD, "Giá đặt Không hợp lệ!");
+            }
+            else
+            {
+                errorProvider.SetError(txtLoaiGD, null);
+            }
         }
     }
 }
