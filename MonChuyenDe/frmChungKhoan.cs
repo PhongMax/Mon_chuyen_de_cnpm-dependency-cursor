@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace MonChuyenDe
 {
-    public partial class frmBGTT : Form
+    public partial class frmChungKhoan : Form
     {
         private const string tableName = "BANG_GIA_TRUC_TUYEN";
         private SqlConnection _connection = null;
@@ -22,16 +22,27 @@ namespace MonChuyenDe
         private int _vitriRow;
         private int _vitriColumn;
 
-        public frmBGTT()
+        public frmChungKhoan()
         {
             InitializeComponent();
         }
 
         private void frmBGTT_Load(object sender, EventArgs e)
         {
-            this.dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.dataGridView1.ColumnHeadersHeight = this.dataGridView1.ColumnHeadersHeight * 2;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomCenter;
+            // disable group control
+            this.groupBox1.Enabled = this.groupBox2.Enabled = false;
+
+            // clear error provider
+            errorProvider1.Clear();
+
+            //set ngày
+            DateTime dateTime = DateTime.UtcNow.Date;
+            lblNgay.Text = "Đặt lệnh cho ngày: " + dateTime.ToString("dd/MM/yyyy");
+
+
+            this.btnDatlenh1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.btnDatlenh1.ColumnHeadersHeight = this.btnDatlenh1.ColumnHeadersHeight * 2;
+            this.btnDatlenh1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomCenter;
 
             if (CanRequestNotifications() == true)
                 BatDau();
@@ -91,19 +102,19 @@ namespace MonChuyenDe
             // SqlDataReader is then loaded into a DataTable and finally the DataTable is used to populate the DataGridView.
             DataTable dt = new DataTable();
             dt.Load(_command.ExecuteReader());    // vì chỉ đọc thôi nên dùng data Reader. ko cần phải dùng dataset
-            this.dataGridView1.DataSource = dt;
+            this.btnDatlenh1.DataSource = dt;
 
             // giữ vị trí cursor
             try
             {
-                dataGridView1.ClearSelection();
-                dataGridView1.Rows[_vitriRow].Cells[_vitriColumn].Selected = true;
+                btnDatlenh1.ClearSelection();
+                btnDatlenh1.Rows[_vitriRow].Cells[_vitriColumn].Selected = true;
 
             }
             catch (Exception ex)
             {
                 // neu co loi thi reset lai
-                this.dataGridView1.ClearSelection();
+                this.btnDatlenh1.ClearSelection();
             }
 
 
@@ -178,7 +189,7 @@ namespace MonChuyenDe
             format.LineAlignment = StringAlignment.Center;
 
             // độ rộng muỗi ô
-            int w = this.dataGridView1.GetCellDisplayRectangle(2, -1, true).Width;
+            int w = this.btnDatlenh1.GetCellDisplayRectangle(2, -1, true).Width;
 
             // vẽ viền
             Pen pen = new Pen(Color.Brown, 1);
@@ -186,7 +197,7 @@ namespace MonChuyenDe
 
             // ==> ô header Mã cổ phiếu
             // lấy đối tượng rectangle....
-            Rectangle r1 = this.dataGridView1.GetCellDisplayRectangle(0, -1, true);
+            Rectangle r1 = this.btnDatlenh1.GetCellDisplayRectangle(0, -1, true);
 
 
             //  chiều dài và rộng...
@@ -194,60 +205,60 @@ namespace MonChuyenDe
             r1.Height = r1.Height / 2 - 2;
 
             // vẽ ô header
-            e.Graphics.FillRectangle(new SolidBrush(this.dataGridView1.ColumnHeadersDefaultCellStyle.BackColor), r1);
-            e.Graphics.DrawString("MÃ CỔ PHIẾU", this.dataGridView1.ColumnHeadersDefaultCellStyle.Font, new SolidBrush(this.dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor),
+            e.Graphics.FillRectangle(new SolidBrush(this.btnDatlenh1.ColumnHeadersDefaultCellStyle.BackColor), r1);
+            e.Graphics.DrawString("MÃ CỔ PHIẾU", this.btnDatlenh1.ColumnHeadersDefaultCellStyle.Font, new SolidBrush(this.btnDatlenh1.ColumnHeadersDefaultCellStyle.ForeColor),
             r1, format);
             e.Graphics.DrawRectangle(pen, r1);
             //==>  ô header Dư mua
 
-            Rectangle r2 = this.dataGridView1.GetCellDisplayRectangle(1, -1, true);
+            Rectangle r2 = this.btnDatlenh1.GetCellDisplayRectangle(1, -1, true);
             r2.Width = 4 * w;
             r2.Height = r2.Height / 2 - 2;
 
-            e.Graphics.FillRectangle(new SolidBrush(this.dataGridView1.ColumnHeadersDefaultCellStyle.BackColor), r2);
-            e.Graphics.DrawString("DƯ MUA", this.dataGridView1.ColumnHeadersDefaultCellStyle.Font, new SolidBrush(this.dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor),
+            e.Graphics.FillRectangle(new SolidBrush(this.btnDatlenh1.ColumnHeadersDefaultCellStyle.BackColor), r2);
+            e.Graphics.DrawString("DƯ MUA", this.btnDatlenh1.ColumnHeadersDefaultCellStyle.Font, new SolidBrush(this.btnDatlenh1.ColumnHeadersDefaultCellStyle.ForeColor),
             r2, format);
             e.Graphics.DrawRectangle(pen, r2);
 
-            Rectangle r3 = this.dataGridView1.GetCellDisplayRectangle(5, -1, true);
+            Rectangle r3 = this.btnDatlenh1.GetCellDisplayRectangle(5, -1, true);
             r3.Width = 2 * w;
             r3.Height = r3.Height / 2 - 2;
 
-            e.Graphics.FillRectangle(new SolidBrush(this.dataGridView1.ColumnHeadersDefaultCellStyle.BackColor), r3);
-            e.Graphics.DrawString("KHỚP LỆNH", this.dataGridView1.ColumnHeadersDefaultCellStyle.Font, new SolidBrush(this.dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor),
+            e.Graphics.FillRectangle(new SolidBrush(this.btnDatlenh1.ColumnHeadersDefaultCellStyle.BackColor), r3);
+            e.Graphics.DrawString("KHỚP LỆNH", this.btnDatlenh1.ColumnHeadersDefaultCellStyle.Font, new SolidBrush(this.btnDatlenh1.ColumnHeadersDefaultCellStyle.ForeColor),
             r3, format);
             e.Graphics.DrawRectangle(pen, r3);
 
-            Rectangle r4 = this.dataGridView1.GetCellDisplayRectangle(7, -1, true);
+            Rectangle r4 = this.btnDatlenh1.GetCellDisplayRectangle(7, -1, true);
 
             r4.Width = 4 * w;
             r4.Height = r4.Height / 2 - 2;
 
-            e.Graphics.FillRectangle(new SolidBrush(this.dataGridView1.ColumnHeadersDefaultCellStyle.BackColor), r4);
-            e.Graphics.DrawString("DƯ BÁN", this.dataGridView1.ColumnHeadersDefaultCellStyle.Font, new SolidBrush(this.dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor),
+            e.Graphics.FillRectangle(new SolidBrush(this.btnDatlenh1.ColumnHeadersDefaultCellStyle.BackColor), r4);
+            e.Graphics.DrawString("DƯ BÁN", this.btnDatlenh1.ColumnHeadersDefaultCellStyle.Font, new SolidBrush(this.btnDatlenh1.ColumnHeadersDefaultCellStyle.ForeColor),
             r4, format);
             e.Graphics.DrawRectangle(pen, r4);
         }
 
         private void dataGridView1_Scroll(object sender, ScrollEventArgs e)
         {
-            Rectangle rtHeader = this.dataGridView1.DisplayRectangle;
-            rtHeader.Height = this.dataGridView1.ColumnHeadersHeight / 2;
-            this.dataGridView1.Invalidate(rtHeader);
+            Rectangle rtHeader = this.btnDatlenh1.DisplayRectangle;
+            rtHeader.Height = this.btnDatlenh1.ColumnHeadersHeight / 2;
+            this.btnDatlenh1.Invalidate(rtHeader);
 
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            _vitriColumn = dataGridView1.CurrentCell.ColumnIndex;
-            _vitriRow = dataGridView1.CurrentRow.Index;
+            _vitriColumn = btnDatlenh1.CurrentCell.ColumnIndex;
+            _vitriRow = btnDatlenh1.CurrentRow.Index;
         }
 
         private void dataGridView1_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
-            Rectangle rtHeader = this.dataGridView1.DisplayRectangle;
-            rtHeader.Height = this.dataGridView1.ColumnHeadersHeight / 2;
-            this.dataGridView1.Invalidate(rtHeader);
+            Rectangle rtHeader = this.btnDatlenh1.DisplayRectangle;
+            rtHeader.Height = this.btnDatlenh1.ColumnHeadersHeight / 2;
+            this.btnDatlenh1.Invalidate(rtHeader);
         }
 
         private void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -264,48 +275,87 @@ namespace MonChuyenDe
             }
         }
 
-        private int datlenh()
+        private void rdbMua_CheckedChanged(object sender, EventArgs e)
         {
-            int result = 1; // thoa
-            string lenh = string.Format("EXEC SP_KHOPLENH_LO {0}, {1}, {2},{3}, {4} ", txtMaCP, DateTime.Now, txtLoaiGD,txtSoLuong, txtGiaDat);
-            using (SqlConnection connection = new SqlConnection(Program.connstr))
+            RadioButton rb = sender as RadioButton;
+
+           
+           
+            if (rb.Checked)
             {
-                connection.Open();
-                SqlCommand sqlCommand = new SqlCommand(lenh, connection);
-                sqlCommand.CommandType = CommandType.Text;
-                try
-                {
-                    sqlCommand.ExecuteNonQuery();
-                }
-                catch
-                {
-                    result = 0; // ko thoa
-                }
+
+                this.groupBox1.Enabled = true;
+                this.groupBox2.Enabled = false;
+                return;
             }
-            return result;
         }
 
-
-        private void btnLenhDat_Click(object sender, EventArgs e)
+        private void rdbBan_CheckedChanged(object sender, EventArgs e)
         {
-             using (var cmd = new SqlCommand("SP_KHOPLENH_LO", _connection))
+
+            RadioButton rb = sender as RadioButton;
+
+           
+            if (rb.Checked)
             {
-                //SqlCommand cmd = new SqlCommand("SP_KHOPLENH_LO", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.Add(new SqlParameter("@macp", txtMaCP.Text));
-                cmd.Parameters.Add(new SqlParameter("@Ngay", "2020-04-17 13:33:08.183"));
-                cmd.Parameters.Add(new SqlParameter("@LoaiGD", txtLoaiGD.Text));
-                cmd.Parameters.Add(new SqlParameter("@soluongMB", int.Parse(txtSoLuong.Text)));
-                cmd.Parameters.Add(new SqlParameter("@giadatMB", float.Parse(txtGiaDat.Text)));
-
-                //conn.Open();
-                cmd.ExecuteNonQuery();
-                //conn.Close();
-
+                this.groupBox1.Enabled = false;
+                this.groupBox2.Enabled = true;
+                return;
             }
-            MessageBox.Show("thanh cong");
         }
 
+        private bool ValidateEmptyString(TextBox txtCK, ComboBox cmbLenhDat, NumericUpDown numSoluong, NumericUpDown numGia)
+        {
+            errorProvider1.Clear();
+
+            // TODO : Check khoảng trống ở textField
+            if (txtCK.Text.Trim().Equals(""))
+            {
+                errorProvider1.SetError(txtCK, "Mã Cổ Phiếu không được để trống !");
+                txtCK.Focus();
+                return false;
+            }
+            if (!(cmbLenhDat.SelectedIndex > -1))
+            {
+                errorProvider1.SetError(cmbLenhDat, "Bạn chưa chọn lệnh đặt !");
+                cmbLenhDat.Focus();
+                return false;
+            }
+            if (numSoluong.Value == 0)
+            {
+                errorProvider1.SetError(numSoluong, "Bạn chưa điền số lượng Cổ Phiếu !");
+                numSoluong.Focus();
+                return false;
+            }
+            if (numGia.Value == 0)
+            {
+                errorProvider1.SetError(numGia, "Bạn chưa điền giá  !");
+                numGia.Focus();
+                return false;
+            }
+
+            return true;
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // validate
+            bool check = this.ValidateEmptyString(txtMaCK1, cmbLoaiLenh1, numSoluong1, numGia1);
+        }
+
+        private void btnDatlenh2_Click(object sender, EventArgs e)
+        {
+            // validate
+            bool check = this.ValidateEmptyString(txtMaCK2, cmbLoaiLenh2, numSoluong2, numGia2);
+            if (check)
+            {
+                //do something
+            }else
+            {
+                // lỗi return;
+                return;
+            }
+        }
     }
 }
