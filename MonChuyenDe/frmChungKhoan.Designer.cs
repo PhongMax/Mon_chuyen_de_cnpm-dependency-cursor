@@ -247,8 +247,6 @@
             // 
             this.cmbLoaiLenh2.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbLoaiLenh2.FormattingEnabled = true;
-            this.cmbLoaiLenh2.Items.AddRange(new object[] {
-            "Lệnh giới hạn(LO)"});
             this.cmbLoaiLenh2.Location = new System.Drawing.Point(242, 47);
             this.cmbLoaiLenh2.Name = "cmbLoaiLenh2";
             this.cmbLoaiLenh2.Size = new System.Drawing.Size(180, 21);
@@ -371,8 +369,6 @@
             // 
             this.cmbLoaiLenh1.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbLoaiLenh1.FormattingEnabled = true;
-            this.cmbLoaiLenh1.Items.AddRange(new object[] {
-            "Lệnh giới hạn(LO)"});
             this.cmbLoaiLenh1.Location = new System.Drawing.Point(250, 43);
             this.cmbLoaiLenh1.Name = "cmbLoaiLenh1";
             this.cmbLoaiLenh1.Size = new System.Drawing.Size(180, 21);
@@ -380,6 +376,7 @@
             // 
             // txtMaCK1
             // 
+            this.txtMaCK1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMaCK1.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaCK1.Location = new System.Drawing.Point(250, 18);
             this.txtMaCK1.MaxLength = 5;

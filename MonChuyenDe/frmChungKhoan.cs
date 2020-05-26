@@ -39,6 +39,19 @@ namespace MonChuyenDe
             DateTime dateTime = DateTime.UtcNow.Date;
             lblNgay.Text = "Đặt lệnh cho ngày: " + dateTime.ToString("dd/MM/yyyy");
 
+            // set loại lệnh trong Combobox 
+            cmbLoaiLenh1.DisplayMember = "Text";
+            cmbLoaiLenh1.ValueMember = "Value";
+            cmbLoaiLenh1.Items.Add(new { Text = "Lệnh giới hạn(LO)", Value = "LO" });
+            cmbLoaiLenh1.SelectedIndex = 0;
+
+            cmbLoaiLenh2.DisplayMember = "Text";
+            cmbLoaiLenh2.ValueMember = "Value";
+            cmbLoaiLenh2.Items.Add(new { Text = "Lệnh giới hạn(LO)", Value = "LO" });
+            cmbLoaiLenh2.SelectedIndex = 0;
+
+
+
 
             this.btnDatlenh1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.btnDatlenh1.ColumnHeadersHeight = this.btnDatlenh1.ColumnHeadersHeight * 2;
@@ -345,6 +358,32 @@ namespace MonChuyenDe
             if (check)
             {
                 //do something
+           
+                using (SqlConnection con = new SqlConnection(GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand("SP_KHOPLENH_LO", _connection))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        //get value member from combobox
+                        String loailenh = (cmbLoaiLenh1.SelectedItem as dynamic).Value;
+
+                        //get daytime
+                        DateTime time = DateTime.Now;            
+                        string format = "yyyy-MM-dd HH:mm:ss";
+
+                        cmd.Parameters.Add(new SqlParameter("@macp", txtMaCK1.Text.Trim()));
+                        cmd.Parameters.Add(new SqlParameter("@Ngay", time.ToString(format) ));
+                        cmd.Parameters.Add(new SqlParameter("@LoaiGD", loailenh));
+                        cmd.Parameters.Add(new SqlParameter("@soluongMB", numSoluong1.Value));
+                        cmd.Parameters.Add(new SqlParameter("@giadatMB", numGia1.Value));
+
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+
+                        
+                    }
+            }
+
             }
             else
             {
