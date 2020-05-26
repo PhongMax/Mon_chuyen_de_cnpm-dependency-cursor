@@ -168,7 +168,7 @@ namespace MonChuyenDe
 
         private string GetConnectionString()
         {
-            return @"Data Source=MSI;Initial Catalog=CHUNGKHOAN;User ID=sa;Password=123456";
+            return @"Data Source=DESKTOP-CJGOS0L;Initial Catalog=CHUNGKHOAN;User ID=sa;Password=123456";
         }
         private void dataGridView1_Paint(object sender, PaintEventArgs e)
         {

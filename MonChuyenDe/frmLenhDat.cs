@@ -30,7 +30,7 @@ namespace MonChuyenDe
 
         private string GetConnectionString()
         {
-            return @"Data Source=MSI;Initial Catalog=CHUNGKHOAN;User ID=sa;Password=123456";
+            return @"Data Source=DESKTOP-CJGOS0L;Initial Catalog=CHUNGKHOAN;User ID=sa;Password=123456";
         }
 
         private void FormLoad()
@@ -50,7 +50,6 @@ namespace MonChuyenDe
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add(new SqlParameter("@macp", txtMaCP.Text));
-                    cmd.Parameters.Add(new SqlParameter("@Ngay", "2020-04-17 13:33:08.183"));
                     cmd.Parameters.Add(new SqlParameter("@LoaiGD", txtLoaiGD.Text));
                     cmd.Parameters.Add(new SqlParameter("@soluongMB", int.Parse(txtSoLuong.Text)));
                     cmd.Parameters.Add(new SqlParameter("@giadatMB", float.Parse(txtGiaDat.Text)));
