@@ -365,15 +365,14 @@ namespace MonChuyenDe
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         //get value member from combobox
-                        String loailenh = (cmbLoaiLenh1.SelectedItem as dynamic).Value;
-
+                    
                         //get daytime
                         DateTime time = DateTime.Now;            
-                        string format = "yyyy-MM-dd HH:mm:ss";
-
+                        string format = "yyyy-MM-dd HH:mm:ss.mmm";
+                            
                         cmd.Parameters.Add(new SqlParameter("@macp", txtMaCK1.Text.Trim()));
                         cmd.Parameters.Add(new SqlParameter("@Ngay", time.ToString(format) ));
-                        cmd.Parameters.Add(new SqlParameter("@LoaiGD", loailenh));
+                        cmd.Parameters.Add(new SqlParameter("@LoaiGD","M" ));
                         cmd.Parameters.Add(new SqlParameter("@soluongMB", numSoluong1.Value));
                         cmd.Parameters.Add(new SqlParameter("@giadatMB", numGia1.Value));
 
@@ -399,11 +398,40 @@ namespace MonChuyenDe
             if (check)
             {
                 //do something
-            }else
+
+                using (SqlConnection con = new SqlConnection(GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand("SP_KHOPLENH_LO", _connection))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        //get value member from combobox
+
+                        //get daytime
+                        DateTime time = DateTime.Now;
+                        string format = "yyyy-MM-dd HH:mm:ss.mmm";
+
+                        cmd.Parameters.Add(new SqlParameter("@macp", txtMaCK2.Text.Trim()));
+                        cmd.Parameters.Add(new SqlParameter("@Ngay", time.ToString(format)));
+                        cmd.Parameters.Add(new SqlParameter("@LoaiGD", "B"));
+                        cmd.Parameters.Add(new SqlParameter("@soluongMB", numSoluong2.Value));
+                        cmd.Parameters.Add(new SqlParameter("@giadatMB", numGia2.Value));
+
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+
+
+                    }
+                }
+                }else
             {
                 // lỗi return;
                 return;
             }
+        }
+
+        private void numSoluong1_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

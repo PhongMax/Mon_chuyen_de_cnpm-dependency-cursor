@@ -254,6 +254,7 @@
             // 
             // txtMaCK2
             // 
+            this.txtMaCK2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMaCK2.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaCK2.Location = new System.Drawing.Point(242, 20);
             this.txtMaCK2.MaxLength = 5;
