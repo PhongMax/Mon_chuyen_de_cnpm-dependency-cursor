@@ -215,6 +215,7 @@
             // numGia2
             // 
             this.numGia2.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numGia2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.numGia2.Increment = new decimal(new int[] {
             1000,
             0,
@@ -233,6 +234,7 @@
             // numSoluong2
             // 
             this.numSoluong2.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numSoluong2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.numSoluong2.Location = new System.Drawing.Point(242, 74);
             this.numSoluong2.Maximum = new decimal(new int[] {
             -1530494976,
@@ -246,6 +248,7 @@
             // cmbLoaiLenh2
             // 
             this.cmbLoaiLenh2.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbLoaiLenh2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.cmbLoaiLenh2.FormattingEnabled = true;
             this.cmbLoaiLenh2.Location = new System.Drawing.Point(242, 47);
             this.cmbLoaiLenh2.Name = "cmbLoaiLenh2";
@@ -256,6 +259,7 @@
             // 
             this.txtMaCK2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMaCK2.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMaCK2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtMaCK2.Location = new System.Drawing.Point(242, 20);
             this.txtMaCK2.MaxLength = 5;
             this.txtMaCK2.Name = "txtMaCK2";
@@ -338,6 +342,7 @@
             // numGia1
             // 
             this.numGia1.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numGia1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.numGia1.Increment = new decimal(new int[] {
             1000,
             0,
@@ -356,6 +361,7 @@
             // numSoluong1
             // 
             this.numSoluong1.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numSoluong1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.numSoluong1.Location = new System.Drawing.Point(250, 70);
             this.numSoluong1.Maximum = new decimal(new int[] {
             -1530494976,
@@ -369,6 +375,7 @@
             // cmbLoaiLenh1
             // 
             this.cmbLoaiLenh1.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbLoaiLenh1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.cmbLoaiLenh1.FormattingEnabled = true;
             this.cmbLoaiLenh1.Location = new System.Drawing.Point(250, 43);
             this.cmbLoaiLenh1.Name = "cmbLoaiLenh1";
@@ -379,6 +386,7 @@
             // 
             this.txtMaCK1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMaCK1.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMaCK1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtMaCK1.Location = new System.Drawing.Point(250, 18);
             this.txtMaCK1.MaxLength = 5;
             this.txtMaCK1.Name = "txtMaCK1";
