@@ -15,7 +15,7 @@ namespace MonChuyenDe
 {
     public partial class frmChungKhoan : Form
     {
-        private const string tableName = "BANG_GIA_TRUC_TUYEN";
+        private const string TABLE_NAME = "BANG_GIA_TRUC_TUYEN";
         private SqlConnection _connection = null;
         private SqlCommand _command = null;
     
@@ -57,6 +57,8 @@ namespace MonChuyenDe
             this.btnDatlenh1.ColumnHeadersHeight = this.btnDatlenh1.ColumnHeadersHeight * 2;
             this.btnDatlenh1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomCenter;
 
+
+            // DEPENDENCY
             if (CanRequestNotifications() == true)
                 BatDau();
             else
@@ -129,8 +131,6 @@ namespace MonChuyenDe
                 // neu co loi thi reset lai
                 this.btnDatlenh1.ClearSelection();
             }
-
-
 
         }
         private string GetSQL()
@@ -429,9 +429,6 @@ namespace MonChuyenDe
             }
         }
 
-        private void numSoluong1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
+    
     }
 }
