@@ -16,7 +16,7 @@
 -----------------------------------------------
 ### Sử dụng: 
  - .Net Framework version 4.5.2
- -  SQL Server
+ -  SQL Server (Trigger, Sql agent Job, Cursor, Dependency SQL, )
 -----------------------------------------------
 
 ### Yêu cầu 
