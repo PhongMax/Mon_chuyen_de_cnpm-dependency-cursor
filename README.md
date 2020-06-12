@@ -38,6 +38,7 @@ Bảng giá trực tuyến có dạng sau:
 Trong cột Dư mua : sẽ 	lưu tổng khối lượng của 2 giá mua tốt nhất
 Cột khớp lệnh : thể hiện giá khớp, khối lượng khớp mới nhất(thèn nào mớ bỏ vào lênh khớp là thèn đó mới nhất thôi, khỏi cần sắp xếp )
 Trong cột Dư bán : sẽ lưu tổng khối lượng của 2 giá bán tốt nhất.
+(chú ý : bảng giá trực tuyến tự động reset data theo ngày)
 
 
 -----------------------------------------------
